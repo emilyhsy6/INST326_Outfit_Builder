@@ -1,4 +1,33 @@
-class ReadTemp:
+import argparse
+import sys
+import requests
+import json
+
+def get_weather():
+    base = "http://api.openweathermap.org/data/2.5/weather?"
+    key = "ad7391750b602b79e722687ca4960538"
+    city = "London" #later integrate city input into argparse
+    api_url = base + "appid=" + key + "&q=" + city
+    
+    fetch_response = requests.get(api_url)
+    response = fetch_response.json()
+    
+    if response["cod"] != "404":
+        return response["main"]
+    
+main = get_weather()
+
+class City:
+    def __init__(self, city):
+        self.city = city
+        
+class Temperature(City):
+    def __init__(self, city, current_temp, high_temp, low_temp):
+        super().__init__(city)
+        
+        
+
+    
     '''Class with different functions to read the current temperature status of the user’s city
     '''
     def read_high():
