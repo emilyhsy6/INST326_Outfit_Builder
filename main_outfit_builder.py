@@ -25,7 +25,9 @@ class Temperature(City):
     def __init__(self, city, current_temp, high_temp, low_temp):
         super().__init__(city)
         
-        
+        self.current_temp = current_temp
+        self.high_temp = high_temp
+        self.low_temp = low_temp
 
     
     '''Class with different functions to read the current temperature status of the user’s city
