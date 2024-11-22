@@ -18,45 +18,55 @@ def get_weather():
 main = get_weather()
 
 class City:
-    def __init__(self, city):
-        self.city = city
-        
-class Temperature(City):
-    def __init__(self, city, current_temp, high_temp, low_temp):
-        super().__init__(city)
-        
+    def __init__(self):
+        self.temp = Temperature()
+        self.humidity = Humidity()
+                
+class Temperature():
+    '''Class with different functions to read the current temperature status of the user’s city
+    '''
+    def __init__(self, current_temp, high_temp, low_temp):
         self.current_temp = current_temp
         self.high_temp = high_temp
         self.low_temp = low_temp
-
-    
-    '''Class with different functions to read the current temperature status of the user’s city
-    '''
-    def read_high():
-        ''' Retrieve the highest temperature forecasted for the day 
-        Returns: 
-	        Float: The highest temperature in degrees Fahrenheit
-        '''
-    def read_low(): 
-        ''' Retrieve the lowest temperature forecasted for the day 
-        Return: 
-	        Float: The lowest temperature in degrees Fahrenheit
-        '''
-    def read_average():
-        ''' Calculate the average temperature forecasted for the day 
-        Return: 
-	        Float: The average temperature in degrees Fahrenheit
-        '''
-    def read_humidity():
-        ''' Retrive the humidity level forecasted for the day 
-        Return: 
-	        Float: The humidity level in percentage
-        '''
-    def read_wind_speed():
-        '''Retrive the wind speed forecasted for the day 
-        Return: 
-	        Float: The wind speed in mph
-        '''
+        
+    def get_temps(self):
+        self.current_temp = main["temp"]
+        self.high_temp = main["temp_max"]
+        self.low_temp = main["temp_min"]
+        
+    def __repr__(self):
+        return f'Current Temperature: {self.current_temp} \nHigh Temperature: {self.high_temp} \nLow Temperature: {self.low_temp}'
+        
+class Humidity():
+    def __init__(self, humidity):
+        self.humidity = humidity
+        
+    def get_humidity(self):
+        self.humidity = main["humidity"]
+        
+    def __repr__(self):
+        return f'Humidity: {self.humidity}'
+        
+class WindSpeed():
+    def __init__(self, wind_speed):
+        self.wind_speed = wind_speed
+        
+    def get_windSpeed(self):
+        self.wind_speed = main["speed"]
+        
+    def __repr__(self):
+        return f'Wind Speed: {self.wind_speed}'
+        
+class Precipitation():
+    def __init__(self, precipitation):
+        self.precipitation = precipitation
+        
+    def get_precipitation(self):
+        self.precipitation = main["pop"] # probability percentage
+        
+    def __repr__(self):
+        return f'Probability Percentage of Precipitation: {self.precipitation}'
 
 
 class Outfit:
@@ -85,3 +95,26 @@ def output_outfit():
 def main():
     """Call the output functions and give user a final response
     """
+
+def parse_args(args_list):
+    """ Parse command-line arguments.
+    
+    Args:
+        args_list (list): the list of strings from the command prompt
+        
+    Returns:
+        args (ArgumentParser)
+    """
+    
+    parser = argparse.ArgumentParser(description="Weather Parser")
+    parser.add_argument("cityname", type=str, help="Path to the directory containing city name")
+    args = parser.parse_args(args_list)
+    return args
+
+if __name__ == "__main__":
+    """
+    Call the ... function
+    """
+    
+    args = parse_args(sys.argv[1:])
+    # holidays = get_holidays(args.countrycode, args.year)
