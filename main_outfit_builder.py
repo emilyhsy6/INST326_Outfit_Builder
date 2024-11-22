@@ -2,12 +2,12 @@ import argparse
 import sys
 import requests
 import json
+import config
 
 def get_weather():
     base = "http://api.openweathermap.org/data/2.5/weather?"
-    key = "ad7391750b602b79e722687ca4960538"
     city = "London" #later integrate city input into argparse
-    api_url = base + "appid=" + key + "&q=" + city
+    api_url = base + "appid=" + config.key + "&q=" + city
     
     fetch_response = requests.get(api_url)
     response = fetch_response.json()
