@@ -43,21 +43,12 @@ class Weather:
     def __repr__(self):
         return_str = ""   
 
-        return_str += f'Current Temperature: {self.current_temp} \nHigh Temperature: {self.high_temp} \nLow Temperature: {self.low_temp} \nHumidity: {self.humidity}
-        '
-        += f'Humidity: {self.humidity}'
+        return_str += f'Current Temperature: {self.current_temp} \nHigh Temperature: {self.high_temp} \nLow Temperature: {self.low_temp}'
+        return_str += f'\nHumidity: {self.humidity}'
+        return_str += f'\nWind Speed: {self.wind_speed}'
+        return_str += f'\nProbability Percentage of Precipitation: {self.precipitation}'
         
-class WindSpeed():
-    
-        
-    def __repr__(self):
-        return f'Wind Speed: {self.wind_speed}'
-        
-class Precipitation():
-
-        
-    def __repr__(self):
-        return f'Probability Percentage of Precipitation: {self.precipitation}'
+        return return_str
 
 
 class Outfit:
