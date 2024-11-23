@@ -17,53 +17,44 @@ def get_weather():
     
 main = get_weather()
 
-class City:
-    def __init__(self):
-        self.temp = Temperature()
-        self.humidity = Humidity()
-                
-class Temperature():
-    '''Class with different functions to read the current temperature status of the user’s city
-    '''
-    def __init__(self, current_temp, high_temp, low_temp):
+class Weather:
+    def __init__(self,current_temp, high_temp, low_temp, humidity, wind_speed, precipitation):
         self.current_temp = current_temp
         self.high_temp = high_temp
         self.low_temp = low_temp
-        
+        self.humidity = humidity
+        self.wind_speed = wind_speed
+        self.precipitation = precipitation
+
     def get_temps(self):
         self.current_temp = main["temp"]
         self.high_temp = main["temp_max"]
         self.low_temp = main["temp_min"]
-        
-    def __repr__(self):
-        return f'Current Temperature: {self.current_temp} \nHigh Temperature: {self.high_temp} \nLow Temperature: {self.low_temp}'
-        
-class Humidity():
-    def __init__(self, humidity):
-        self.humidity = humidity
-        
+
     def get_humidity(self):
         self.humidity = main["humidity"]
-        
-    def __repr__(self):
-        return f'Humidity: {self.humidity}'
-        
-class WindSpeed():
-    def __init__(self, wind_speed):
-        self.wind_speed = wind_speed
-        
+
     def get_windSpeed(self):
         self.wind_speed = main["speed"]
+
+    def get_precipitation(self):
+        self.precipitation = main["pop"] # probability percentage
+
+    def __repr__(self):
+        return_str = ""   
+
+        return_str += f'Current Temperature: {self.current_temp} \nHigh Temperature: {self.high_temp} \nLow Temperature: {self.low_temp} \nHumidity: {self.humidity}
+        '
+        += f'Humidity: {self.humidity}'
+        
+class WindSpeed():
+    
         
     def __repr__(self):
         return f'Wind Speed: {self.wind_speed}'
         
 class Precipitation():
-    def __init__(self, precipitation):
-        self.precipitation = precipitation
-        
-    def get_precipitation(self):
-        self.precipitation = main["pop"] # probability percentage
+
         
     def __repr__(self):
         return f'Probability Percentage of Precipitation: {self.precipitation}'
