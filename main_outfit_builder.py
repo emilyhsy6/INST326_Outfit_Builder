@@ -18,38 +18,26 @@ def get_weather():
 main = get_weather()
 
 class Weather:
-    def __init__(self,current_temp, high_temp, low_temp, humidity, wind_speed, precipitation):
-        self.current_temp = current_temp
-        self.high_temp = high_temp
-        self.low_temp = low_temp
-        self.humidity = humidity
-        self.wind_speed = wind_speed
-        self.precipitation = precipitation
-
-    def get_temps(self):
+    def __init__(self):
         self.current_temp = main["temp"]
         self.high_temp = main["temp_max"]
         self.low_temp = main["temp_min"]
-
-    def get_humidity(self):
         self.humidity = main["humidity"]
-
-    def get_windSpeed(self):
-        self.wind_speed = main["speed"]
-
-    def get_precipitation(self):
-        self.precipitation = main["pop"] # probability percentage
+        #self.wind_speed = main["speed"]
+        #self.precipitation = main["pop"]
 
     def __repr__(self):
         return_str = ""   
 
         return_str += f'Current Temperature: {self.current_temp} \nHigh Temperature: {self.high_temp} \nLow Temperature: {self.low_temp}'
         return_str += f'\nHumidity: {self.humidity}'
-        return_str += f'\nWind Speed: {self.wind_speed}'
-        return_str += f'\nProbability Percentage of Precipitation: {self.precipitation}'
+        #return_str += f'\nWind Speed: {self.wind_speed}'
+        #return_str += f'\nProbability Percentage of Precipitation: {self.precipitation}'
         
         return return_str
 
+test = Weather()
+print(test)
 
 class Outfit:
     """Class that determines the various outfit elements based on the weather
