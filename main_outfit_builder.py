@@ -4,10 +4,10 @@ import requests
 import json
 import config
 
-def get_weather():
+def get_main():
     base = "http://api.openweathermap.org/data/2.5/weather?"
     city = "London" #later integrate city input into argparse
-    api_url = base + "appid=" + config.key + "&q=" + city
+    api_url = base + "appid=" + config.key + "&q=" + city + "&units=imperial"
     
     fetch_response = requests.get(api_url)
     response = fetch_response.json()
@@ -15,7 +15,33 @@ def get_weather():
     if response["cod"] != "404":
         return response["main"]
     
-main = get_weather()
+main = get_main()
+
+def get_weather():
+    base = "http://api.openweathermap.org/data/2.5/weather?"
+    city = "London" #later integrate city input into argparse
+    api_url = base + "appid=" + config.key + "&q=" + city + "&units=imperial"
+    
+    fetch_response = requests.get(api_url)
+    response = fetch_response.json()
+    
+    if response["cod"] != "404":
+        return response["weather"]
+
+weather = get_weather()
+
+def get_wind():
+    base = "http://api.openweathermap.org/data/2.5/weather?"
+    city = "London" #later integrate city input into argparse
+    api_url = base + "appid=" + config.key + "&q=" + city + "&units=imperial"
+    
+    fetch_response = requests.get(api_url)
+    response = fetch_response.json()
+    
+    if response["cod"] != "404":
+        return response["wind"]
+    
+wind = get_wind()
 
 class Weather:
     def __init__(self):
@@ -23,16 +49,16 @@ class Weather:
         self.high_temp = main["temp_max"]
         self.low_temp = main["temp_min"]
         self.humidity = main["humidity"]
-        #self.wind_speed = main["speed"]
-        #self.precipitation = main["pop"]
+        self.wind_speed = wind["speed"]
+        self.description = weather[0]["description"]
 
     def __repr__(self):
         return_str = ""   
 
-        return_str += f'Current Temperature: {self.current_temp} \nHigh Temperature: {self.high_temp} \nLow Temperature: {self.low_temp}'
-        return_str += f'\nHumidity: {self.humidity}'
-        #return_str += f'\nWind Speed: {self.wind_speed}'
-        #return_str += f'\nProbability Percentage of Precipitation: {self.precipitation}'
+        return_str += f'Current Temperature: {self.current_temp} degrees F \nHigh Temperature: {self.high_temp} degrees F \nLow Temperature: {self.low_temp} degrees F'
+        return_str += f'\nHumidity: {self.humidity}%'
+        return_str += f'\nWind Speed: {self.wind_speed}'
+        return_str += f'\nWeather is: {self.description}'
         
         return return_str
 
