@@ -68,9 +68,12 @@ print(test)
 class Outfit:
     """Class that determines the various outfit elements based on the weather
     """
-    def decide_outfit():
-        """Decide the final outfit based on combination of elements
-        """
+    def __init__(self, layers, materials, lengths, rain_protection):
+        self.layers = layers
+        self.materials = materials
+        self.lengths = lengths
+        self.rain_protection = rain_protection
+
     def decide_layers():
         """Decide how many layers the user should wear
         """
