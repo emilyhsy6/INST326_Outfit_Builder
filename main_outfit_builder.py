@@ -5,6 +5,14 @@ import json
 import config
 
 def get_weather_data(city):
+    """Get data from weather API
+    
+    Args:
+        city (str): the weather data being retrieved for this city  
+
+    Returns:
+        dict: the weather data taken from the api
+    """
     base = "http://api.openweathermap.org/data/2.5/weather?"
     api_url = base + "appid=" + config.key + "&q=" + city + "&units=imperial"
 
@@ -23,6 +31,9 @@ def get_weather_data(city):
 
 class Weather:
     def __init__(self, main_data, wind_data, weather_data):
+        """Initialize the Weather class.
+        """
+        
         self.current_temp = main_data["temp"]
         self.high_temp = main_data["temp_max"]
         self.low_temp = main_data["temp_min"]
@@ -31,16 +42,18 @@ class Weather:
         self.description = weather_data[0]["description"]
 
     def __repr__(self):
-        return_str = ""   
+         """Return string represenation of Weather class.
+         """
+         return_str = ""   
 
-        return_str += f'Current Temperature: {self.current_temp} degrees F'
-        return_str += f'\nHigh Temperature: {self.high_temp} degrees F'
-        return_str += f'\nLow Temperature: {self.low_temp} degrees F'
-        return_str += f'\nHumidity: {self.humidity}%'
-        return_str += f'\nWind Speed: {self.wind_speed}'
-        return_str += f'\nWeather is: {self.description}'
+         return_str += f'Current Temperature: {self.current_temp} degrees F'
+         return_str += f'\nHigh Temperature: {self.high_temp} degrees F'
+         return_str += f'\nLow Temperature: {self.low_temp} degrees F'
+         return_str += f'\nHumidity: {self.humidity}%'
+         return_str += f'\nWind Speed: {self.wind_speed}'
+         return_str += f'\nWeather is: {self.description}'
         
-        return return_str
+         return return_str
 
 class Outfit:
     """Class that determines the various outfit elements based on the weather
