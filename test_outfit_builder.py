@@ -1,26 +1,14 @@
 import unittest
-import argparse
-import json
-from main_outfit_builder import get_weather_data, Weather, Outfit, parse_args
+import main_outfit_builder
 
-class TestOutfitBuilder(unittest.TestCase):
-    def create_test_data(self):
-        self.test_data = {
-            "main": {
-                "temp": 45.0,
-                "temp_max": 47.0,
-                "temp_min": 41.0,
-                "humidity": 80,
-            },
-            "wind": {
-                "speed": 6.0,
-            },
-            "weather": [
-                {"description": "overcast clouds"}
-            ]
-        }
-        self.city = "London"
-        
+#define test class(change method name
+class TestStringMethods(unittest.TestCase):
+#1.Create any data or objects needed for the test
+#2.Call the function, method, or class you’re testing using the setup data
+#3. Use assertions to verify that the output or behavior matches your expectations
+#Example
+class test_weather(unittest.TestCase):
+
     def test_upper(self):
         self.assertEqual('foo'.upper(), 'FOO')
 
