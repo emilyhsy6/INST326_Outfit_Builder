@@ -33,7 +33,9 @@ class Weather:
     def __repr__(self):
         return_str = ""   
 
-        return_str += f'Current Temperature: {self.current_temp} degrees F \nHigh Temperature: {self.high_temp} degrees F \nLow Temperature: {self.low_temp} degrees F'
+        return_str += f'Current Temperature: {self.current_temp} degrees F'
+        return_str += f'\nHigh Temperature: {self.high_temp} degrees F'
+        return_str += f'\nLow Temperature: {self.low_temp} degrees F'
         return_str += f'\nHumidity: {self.humidity}%'
         return_str += f'\nWind Speed: {self.wind_speed}'
         return_str += f'\nWeather is: {self.description}'
