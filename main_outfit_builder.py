@@ -4,53 +4,31 @@ import requests
 import json
 import config
 
-def get_main():
+def get_weather_data(city):
     base = "http://api.openweathermap.org/data/2.5/weather?"
-    city = "London" #later integrate city input into argparse
     api_url = base + "appid=" + config.key + "&q=" + city + "&units=imperial"
-    
+
     fetch_response = requests.get(api_url)
     response = fetch_response.json()
-    
-    if response["cod"] != "404":
-        return response["main"]
-    
-main = get_main()
 
-def get_weather():
-    base = "http://api.openweathermap.org/data/2.5/weather?"
-    city = "London" #later integrate city input into argparse
-    api_url = base + "appid=" + config.key + "&q=" + city + "&units=imperial"
-    
-    fetch_response = requests.get(api_url)
-    response = fetch_response.json()
-    
     if response["cod"] != "404":
-        return response["weather"]
-
-weather = get_weather()
-
-def get_wind():
-    base = "http://api.openweathermap.org/data/2.5/weather?"
-    city = "London" #later integrate city input into argparse
-    api_url = base + "appid=" + config.key + "&q=" + city + "&units=imperial"
-    
-    fetch_response = requests.get(api_url)
-    response = fetch_response.json()
-    
-    if response["cod"] != "404":
-        return response["wind"]
-    
-wind = get_wind()
+        return {
+            "main": response["main"],
+            "weather": response["weather"],
+            "wind": response["wind"]
+        }
+    else:
+        print(f"{city} not found.")
+        return None
 
 class Weather:
-    def __init__(self):
-        self.current_temp = main["temp"]
-        self.high_temp = main["temp_max"]
-        self.low_temp = main["temp_min"]
-        self.humidity = main["humidity"]
-        self.wind_speed = wind["speed"]
-        self.description = weather[0]["description"]
+    def __init__(self, main_data, wind_data, weather_data):
+        self.current_temp = main_data["temp"]
+        self.high_temp = main_data["temp_max"]
+        self.low_temp = main_data["temp_min"]
+        self.humidity = main_data["humidity"]
+        self.wind_speed = wind_data["speed"]
+        self.description = weather_data[0]["description"]
 
     def __repr__(self):
         return_str = ""   
@@ -61,9 +39,6 @@ class Weather:
         return_str += f'\nWeather is: {self.description}'
         
         return return_str
-
-test = Weather()
-print(test)
 
 class Outfit:
     """Class that determines the various outfit elements based on the weather
@@ -91,6 +66,7 @@ def output_weather():
 def output_outfit():
     """Call the Outfit class and display attributes as cohesive statement
     """
+    
 def main():
     """Call the output functions and give user a final response
     """
@@ -114,6 +90,14 @@ if __name__ == "__main__":
     """
     Call the ... function
     """
-    
     args = parse_args(sys.argv[1:])
-    # holidays = get_holidays(args.countrycode, args.year)
+
+    weather = get_weather_data(args.cityname)
+    
+    if weather:
+        main_data = weather["main"]
+        weather_data = weather["weather"]
+        wind_data = weather["wind"]
+
+        parsed_weather = Weather(main_data, wind_data, weather_data)
+        print(parsed_weather)
