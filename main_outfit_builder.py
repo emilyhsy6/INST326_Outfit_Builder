@@ -74,14 +74,6 @@ class Outfit:
         """Decide what length of clothes the user should wear
         """
 
-def output_weather():
-    """Call the ReadTemp class and display attributes as cohesive statement
-    """
-    
-def output_outfit():
-    """Call the Outfit class and display attributes as cohesive statement
-    """
-    
 def main():
     """Call the output functions and give user a final response
     """
