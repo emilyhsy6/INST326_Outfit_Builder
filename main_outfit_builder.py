@@ -128,3 +128,5 @@ if __name__ == "__main__":
 
         parsed_weather = Weather(main_data, wind_data, weather_data)
         print(parsed_weather)
+        
+#test push
