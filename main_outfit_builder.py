@@ -58,12 +58,11 @@ class Weather:
 class Outfit:
     """Class that determines the various outfit elements based on the weather
     """
-    def __init__(self, parsed_weather, top_layers, bottom_layers, materials, lengths, rain_protection):
+    def __init__(self, parsed_weather, top_layers, bottom_layers, materials, rain_protection):
         self.parsed_weather = parsed_weather
         self.top_layers = top_layers
         self.bottom_layers = bottom_layers
         self.materials = materials
-        self.lengths = lengths
         self.rain_protection = rain_protection
 
     def decide_top_layers(self):
@@ -84,12 +83,15 @@ class Outfit:
         else:
             self.bottom_layers = 1
             
-    def decide_materials():
+    def decide_materials(self):
         """Decide what kind of fabric materials the user should wear
         """
-    def decide_lengths(self):
-        """Decide what length of clothes the user should wear
-        """
+        if parsed_weather.humidity <= 55:
+            self.materials = "Cotton, Polyester, Wool, Silk, Denim, Leather, Cashmere, or Fleece"
+            
+        elif parsed_weather.humidity > 55:
+            self.materials = "Cotton, Polyester, Linen, Silk, Rayon, Nylon, or Jersey"
+
     def decide_rain_protection(self):
         """Decide if the user should bring rain protection
         """
@@ -108,6 +110,8 @@ class Outfit:
             return_str += f"\n Don't forget an umbrella!"
         else:
             return_str += f"\n Have a great day!"
+        
+        return_str += f"The recommended materials are {self.materials}."
 
 def main():
     """Call the output functions and give user a final response
