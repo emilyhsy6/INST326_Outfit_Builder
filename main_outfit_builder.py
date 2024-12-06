@@ -69,30 +69,7 @@ class Outfit:
     def decide_top_layers(self):
         """Decide how many layers the user should wear on top
         """
-<<<<<<< Updated upstream
-        # if 
-=======
-<<<<<<< HEAD
-        if parsed_weather.low_temp <= 32:
-            self.top_layers = 3
-        elif parsed_weather.low_temp > 32 and parsed_weather.low_temp <= 60:
-            self.top_layers = 2
-        else:
-            self.top_layers = 1
-
-    def decide_bottom_layers(self):
-        """Decide how many layers the user should wear on the bottom
-        """
-        if parsed_weather.low_temp <= 32:
-            self.bottom_layers = 2
-        else:
-            self.bottom_layers = 1
-            
-    def decide_materials(self):
-=======
->>>>>>> Stashed changes
     def decide_materials():
->>>>>>> e437a6a813f482873690308e7b7f2747a0f62936
         """Decide what kind of fabric materials the user should wear
         """
     def decide_lengths(self):
