@@ -46,12 +46,12 @@ class Weather:
          """
          return_str = ""   
 
-         return_str += f'Current Temperature: {self.current_temp} degrees F'
-         return_str += f'\nHigh Temperature: {self.high_temp} degrees F'
-         return_str += f'\nLow Temperature: {self.low_temp} degrees F'
-         return_str += f'\nHumidity: {self.humidity}%'
-         return_str += f'\nWind Speed: {self.wind_speed}'
-         return_str += f'\nWeather is: {self.description}'
+         return_str += f"Current Temperature: {self.current_temp} degrees F"
+         return_str += f"\nHigh Temperature: {self.high_temp} degrees F"
+         return_str += f"\nLow Temperature: {self.low_temp} degrees F"
+         return_str += f"\nHumidity: {self.humidity}%"
+         return_str += f"\nWind Speed: {self.wind_speed}"
+         return_str += f"\nWeather is: {self.description}"
         
          return return_str
 
@@ -99,23 +99,21 @@ class Outfit:
             self.rain_protection = True
         else:
             self.rain_protection = False
+            
     def __repr__(self):
         """Return string representation of Outfit class
         """
         return_str = ""
         
-        return_str += f"We recommend wearing {self.top_layers} layer(s) on top "
-        return_str += f"and {self.bottom_layers} layer(s) on the bottom"
+        return_str += f"\nWe recommend wearing {self.top_layers} layer(s) on top "
+        return_str += f"and {self.bottom_layers} layer(s) on the bottom."
+        return_str += f"\nThe recommended materials are {self.materials}."
         if self.rain_protection == True:
-            return_str += f"\n Don't forget an umbrella!"
+            return_str += f"\nDon't forget an umbrella!"
         else:
-            return_str += f"\n Have a great day!"
+            return_str += f"\nHave a great day!"
         
-        return_str += f"The recommended materials are {self.materials}."
-
-def main():
-    """Call the output functions and give user a final response
-    """
+        return return_str
 
 def parse_args(args_list):
     """ Parse command-line arguments.
@@ -136,8 +134,7 @@ if __name__ == "__main__":
     """
     Call the ... function
     """
-    args = parse_args(sys.argv[1:])
-
+    args = parse_args(sys.argv[1:])    
     weather = get_weather_data(args.cityname)
     
     if weather:
@@ -148,4 +145,10 @@ if __name__ == "__main__":
         parsed_weather = Weather(main_data, wind_data, weather_data)
         print(parsed_weather)
         
-#test push
+        outfit = Outfit(parsed_weather, None, None, None, None)
+        outfit.decide_top_layers()
+        outfit.decide_bottom_layers()
+        outfit.decide_materials()
+        outfit.decide_rain_protection()
+        
+        print(outfit)
