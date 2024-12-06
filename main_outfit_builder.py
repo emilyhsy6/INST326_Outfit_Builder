@@ -58,22 +58,64 @@ class Weather:
 class Outfit:
     """Class that determines the various outfit elements based on the weather
     """
-    def __init__(self, layers, materials, lengths, rain_protection):
-        self.layers = layers
+    def __init__(self, parsed_weather, top_layers, bottom_layers, materials, lengths, rain_protection):
+        self.parsed_weather = parsed_weather
+        self.top_layers = top_layers
+        self.bottom_layers = bottom_layers
         self.materials = materials
         self.lengths = lengths
         self.rain_protection = rain_protection
 
-    def decide_layers():
-        """Decide how many layers the user should wear
+    def decide_top_layers(self):
+        """Decide how many layers the user should wear on top
         """
+<<<<<<< Updated upstream
         # if 
+=======
+<<<<<<< HEAD
+        if parsed_weather.low_temp <= 32:
+            self.top_layers = 3
+        elif parsed_weather.low_temp > 32 and parsed_weather.low_temp <= 60:
+            self.top_layers = 2
+        else:
+            self.top_layers = 1
+
+    def decide_bottom_layers(self):
+        """Decide how many layers the user should wear on the bottom
+        """
+        if parsed_weather.low_temp <= 32:
+            self.bottom_layers = 2
+        else:
+            self.bottom_layers = 1
+            
+    def decide_materials(self):
+=======
+>>>>>>> Stashed changes
     def decide_materials():
+>>>>>>> e437a6a813f482873690308e7b7f2747a0f62936
         """Decide what kind of fabric materials the user should wear
         """
-    def decide_sleeve_or_pant_length():
+    def decide_lengths(self):
         """Decide what length of clothes the user should wear
         """
+    def decide_rain_protection(self):
+        """Decide if the user should bring rain protection
+        """
+        if "rain" in parsed_weather.description:
+            self.rain_protection = True
+        else:
+            self.rain_protection = False
+    def __repr__(self):
+        """Return string representation of Outfit class
+        """
+        return_str = ""
+        
+        return_str += f"We recommend wearing {self.top_layers} layer(s) on top "
+        return_str += f"and {self.bottom_layers} layer(s) on the bottom"
+        if self.rain_protection == True:
+            return_str += f"\n Don't forget an umbrella!"
+        else:
+            return_str += f"\n Have a great day!"
 
 def main():
     """Call the output functions and give user a final response
