@@ -67,6 +67,7 @@ class Outfit:
     def decide_layers():
         """Decide how many layers the user should wear
         """
+        # if 
     def decide_materials():
         """Decide what kind of fabric materials the user should wear
         """
