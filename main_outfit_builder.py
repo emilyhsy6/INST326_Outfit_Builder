@@ -32,6 +32,11 @@ def get_weather_data(city):
 class Weather:
     def __init__(self, main_data, wind_data, weather_data):
         """Initialize the Weather class.
+
+        Args:
+            main_data (dict):Contains temperature and humidity data
+            wind_data (dict): Holds wind speed data
+            weather_data (list):Holds a description of the weather.
         """
         
         self.current_temp = main_data["temp"]
@@ -59,6 +64,16 @@ class Outfit:
     """Class that determines the various outfit elements based on the weather
     """
     def __init__(self, parsed_weather, top_layers, bottom_layers, materials, rain_protection):
+        """Initialize the Outfit class with weather data and outfit attributes
+
+        Args:
+            parsed_weather (Weather): The weather data
+            top_layers (int): Recommended number of top layers to wear
+            bottom_layers (int): Recommended number of bottom layers to wear
+            materials (str): Recommended clothing materials to wear
+            rain_protection (bool): Whether rain protection is needed for the day
+        """
+        
         self.parsed_weather = parsed_weather
         self.top_layers = top_layers
         self.bottom_layers = bottom_layers
