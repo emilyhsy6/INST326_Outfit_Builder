@@ -54,7 +54,10 @@ class Weather:
          return_str += f"Current Temperature: {self.current_temp} degrees F"
          return_str += f"\nHigh Temperature: {self.high_temp} degrees F"
          return_str += f"\nLow Temperature: {self.low_temp} degrees F"
-         return_str += f"\nHumidity: {self.humidity}%"
+         if self.humidity <= 55:
+            return_str += f"\nHumidity: {self.humidity}% (Comfortable)"
+         else:
+            return_str += f"\nHumidity: {self.humidity}% (Humid)"
          return_str += f"\nWind Speed: {self.wind_speed}"
          return_str += f"\nWeather is: {self.description}"
         
