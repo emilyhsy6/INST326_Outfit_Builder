@@ -26,7 +26,7 @@ def get_weather_data(city):
             "wind": response["wind"]
         }
     else:
-        print(f"{city} not found.")
+        print(f"{city} not found.") #Print this message, if input not found
         return None
 
 class Weather:
@@ -73,7 +73,7 @@ class Outfit:
             materials (str): Recommended clothing materials to wear
             rain_protection (bool): Whether rain protection is needed for the day
         """
-        
+
         self.parsed_weather = parsed_weather
         self.top_layers = top_layers
         self.bottom_layers = bottom_layers
@@ -84,17 +84,17 @@ class Outfit:
         """Decide how many layers the user should wear on top
         """
         if parsed_weather.low_temp <= 32:
-            self.top_layers = 3
+            self.top_layers = 3 #max layers
         elif parsed_weather.low_temp > 32 and parsed_weather.low_temp <= 60:
             self.top_layers = 2
         else:
-            self.top_layers = 1
+            self.top_layers = 1 
     
     def decide_bottom_layers(self):
         """Decide how many layers the user should wear on the bottom
         """
         if parsed_weather.low_temp <= 32:
-            self.bottom_layers = 2
+            self.bottom_layers = 2 #max botton layer
         else:
             self.bottom_layers = 1
             
@@ -126,7 +126,7 @@ class Outfit:
         if self.rain_protection == True:
             return_str += f"\nDon't forget an umbrella!"
         else:
-            return_str += f"\nHave a great day!"
+            return_str += f"\n Have a great day!"
         
         return return_str
 
@@ -166,4 +166,4 @@ if __name__ == "__main__":
         outfit.decide_materials()
         outfit.decide_rain_protection()
         
-        print(outfit)
+        print(outfit)#Print outfit suggestions 
