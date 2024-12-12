@@ -34,6 +34,24 @@ class TestOutfitBuilder(unittest.TestCase):
     def test_Weather(self):
         """Assert that output is correct and matches data pulled from API.
         """
+        """Test the Weather class initialization and representation."""
+        weather = Weather(self.test_data["main"], self.test_data["wind"], self.test_data["weather"])
+        self.assertEqual(weather.current_temp, 45.0)
+        self.assertEqual(weather.high_temp, 47.0)
+        self.assertEqual(weather.low_temp, 41.0)
+        self.assertEqual(weather.humidity, 80)
+        self.assertEqual(weather.wind_speed, 6.0)
+        self.assertEqual(weather.description, "overcast clouds")
+
+        expected_repr = (
+            "Current Temperature: 45.0°F\n"
+            "High Temperature: 47.0°F\n"
+            "Low Temperature: 41.0°F\n"
+            "Humidity: 80% (Humid)\n"
+            "Wind Speed: 6.0 mph\n"
+            "Weather Description: overcast clouds"
+        )
+        self.assertEqual(repr(weather), expected_repr)
     
     def test_Outfit(self):
         """Assert that ouput is correct based on weather data.
