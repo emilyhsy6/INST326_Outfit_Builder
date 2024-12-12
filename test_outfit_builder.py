@@ -3,7 +3,7 @@ import argparse
 import json
 from main_outfit_builder import get_weather_data, Weather, Outfit, parse_args
 class TestOutfitBuilder(unittest.TestCase):
-    def create_test_data(self):
+    def setUp(self):
         self.test_data = {
             "main": {
                 "temp": 45.0,
@@ -56,6 +56,18 @@ class TestOutfitBuilder(unittest.TestCase):
     def test_Outfit(self):
         """Assert that ouput is correct based on weather data.
         """
+
+        weather = Weather(self.test_data["main"], self.test_data["wind"], self.test_data["weather"])
+        outfit = Outfit(weather)
+        outfit.decide_top_layers()
+        outfit.decide_bottom_layers()
+        outfit.decide_materials()
+        outfit.decide_rain_protection()
+    
+        self.assertEqual(outfit.decide_top_layers, 2)
+        self.assertEqual(outfit.decide_bottom_layers, 1)
+        self.assertEqual(outfit.decide_materials, "Cotton, Polyester, Linen, Silk, Rayon, Nylon, or Jersey")
+        self.assertFalse(outfit.decide_rain_protection)
 
         self.assertEqual
 
