@@ -58,8 +58,8 @@ class Weather:
             return_str += f"\nHumidity: {self.humidity}% (Comfortable)"
          else:
             return_str += f"\nHumidity: {self.humidity}% (Humid)"
-         return_str += f"\nWind Speed: {self.wind_speed}"
-         return_str += f"\nWeather is: {self.description}"
+            return_str += f"\nWind Speed: {self.wind_speed} mph"
+            return_str += f"\nWeather is: {self.description}"
         
          return return_str
 
@@ -86,9 +86,9 @@ class Outfit:
     def decide_top_layers(self):
         """Decide how many layers the user should wear on top
         """
-        if parsed_weather.low_temp <= 32:
+        if self.parsed_weather.low_temp <= 32:
             self.top_layers = 3 #max layers
-        elif parsed_weather.low_temp > 32 and parsed_weather.low_temp <= 60:
+        elif self.parsed_weather.low_temp > 32 and self.parsed_weather.low_temp <= 60:
             self.top_layers = 2
         else:
             self.top_layers = 1 
@@ -96,7 +96,7 @@ class Outfit:
     def decide_bottom_layers(self):
         """Decide how many layers the user should wear on the bottom
         """
-        if parsed_weather.low_temp <= 32:
+        if self.parsed_weather.low_temp <= 32:
             self.bottom_layers = 2 #max botton layer
         else:
             self.bottom_layers = 1
@@ -104,16 +104,16 @@ class Outfit:
     def decide_materials(self):
         """Decide what kind of fabric materials the user should wear
         """
-        if parsed_weather.humidity <= 55:
+        if self.parsed_weather.humidity <= 55:
             self.materials = "Cotton, Polyester, Wool, Silk, Denim, Leather, Cashmere, or Fleece"
             
-        elif parsed_weather.humidity > 55:
+        elif self.parsed_weather.humidity > 55:
             self.materials = "Cotton, Polyester, Linen, Silk, Rayon, Nylon, or Jersey"
 
     def decide_rain_protection(self):
         """Decide if the user should bring rain protection
         """
-        if "rain" in parsed_weather.description:
+        if "rain" in self.parsed_weather.description:
             self.rain_protection = True
         else:
             self.rain_protection = False
@@ -129,7 +129,7 @@ class Outfit:
         if self.rain_protection == True:
             return_str += f"\nDon't forget an umbrella!"
         else:
-            return_str += f"\n Have a great day!"
+            return_str += f"\nHave a great day!"
         
         return return_str
 
