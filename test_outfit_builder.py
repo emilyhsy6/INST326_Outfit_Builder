@@ -23,6 +23,13 @@ class TestOutfitBuilder(unittest.TestCase):
     def test_get_weather_data(self):
         """Assert that output data matches data pulled from API.
         """
+        weather = get_weather_data(self)
+        if weather:
+            self.assertIn("main", weather)#Check if "main" data key exists in response
+            self.assertIn("wind", weather)#Check if "wind" key exists response
+            self.assertIn("weather", weather)#Check if "weather" key exists response
+        else:
+            self.assertIsNone(weather,"City not found")   #return none
     
     def test_Weather(self):
         """Assert that output is correct and matches data pulled from API.
