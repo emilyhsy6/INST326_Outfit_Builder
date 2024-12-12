@@ -2,11 +2,9 @@ import unittest
 from main_outfit_builder import get_weather_data, Weather, Outfit
 
 class TestOutfitBuilder(unittest.TestCase):
-   """ Testing outfit builder program, which include API data retrival,
-       weather object, and logic for outfit suggestions.
-   """ 
-   
-   def setUp(self):
+    """ Testing outfit builder program, which include API data retrival, weather object, and logic for outfit suggestions.
+    """ 
+    def setUp(self):
         """ Set up test data and initialize sample data for testing.
         """
         self.test_data = {
@@ -31,11 +29,11 @@ class TestOutfitBuilder(unittest.TestCase):
         """
         weather = get_weather_data(self.city)
         if weather:
-            self.assertIn("main", weather)#Check if main data key exists in response
-            self.assertIn("wind", weather)#Check if wind data exists response
-            self.assertIn("weather", weather)#Check if weather exists response
+            self.assertIn("main", weather) # Check if main data key exists in response
+            self.assertIn("wind", weather) # Check if wind data exists response
+            self.assertIn("weather", weather) # Check if weather exists response
         else:
-            self.assertIsNone(weather,"City not found")   #return none
+            self.assertIsNone(weather,"City not found") #return none
     
     def test_Weather(self):
         """Test the initialization of the Weather class and ensure it's returning the correct strings.
@@ -47,7 +45,7 @@ class TestOutfitBuilder(unittest.TestCase):
         self.assertEqual(self.weather.wind_speed, 6.0)
         self.assertEqual(self.weather.description, "overcast clouds")
 
-        #Expected string representation of weather class
+        # Expected string representation of weather class
         expected_repr = (
             "Current Temperature: 45.0 degrees F\n"
             "High Temperature: 47.0 degrees F\n"
@@ -59,13 +57,12 @@ class TestOutfitBuilder(unittest.TestCase):
         self.assertEqual(repr(self.weather), expected_repr)
     
     def test_Outfit(self):
-        """ Test the logic behind the outfit class for deciding bottom and top layers,
-          clothing materials, and rain protection.
+        """ Test the logic behind the outfit class for deciding bottom and top layers, clothing materials, and rain protection.
         """
-        #Initialize outfit object with the test weather instance
+        # Initialize outfit object with the test weather instance
         outfit = Outfit(self.weather, None, None, None, None)
 
-        #Run decision-making process 
+        # Run decision-making process 
         outfit.decide_top_layers()
         outfit.decide_bottom_layers()
         outfit.decide_materials()
