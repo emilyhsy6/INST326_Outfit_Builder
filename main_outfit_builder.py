@@ -144,7 +144,7 @@ class Outfit:
         # Initialize an empty string for output
         return_str = ""
         
-        # Build the output string with weather details
+        # Build the output string with outfit details
         return_str += f"\nWe recommend wearing {self.top_layers} layer(s) on top "
         return_str += f"and {self.bottom_layers} layer(s) on the bottom."
         return_str += f"\nThe recommended materials are {self.materials}."
