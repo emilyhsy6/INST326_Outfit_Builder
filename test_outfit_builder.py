@@ -30,8 +30,8 @@ class TestOutfitBuilder(unittest.TestCase):
         weather = get_weather_data(self.city)
         if weather:
             self.assertIn("main", weather) # Check if main data key exists in response
-            self.assertIn("wind", weather) # Check if wind data exists response
-            self.assertIn("weather", weather) # Check if weather exists response
+            self.assertIn("wind", weather) # Check if wind data key exists response
+            self.assertIn("weather", weather) # Check if weather data key exists response
         else:
             self.assertIsNone(weather,"City not found") #return none
     
