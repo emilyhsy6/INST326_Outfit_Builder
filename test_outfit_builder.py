@@ -25,9 +25,9 @@ class TestOutfitBuilder(unittest.TestCase):
         """
         weather = get_weather_data(self)
         if weather:
-            self.assertIn("main", weather)#Check if "main" data key exists in response
-            self.assertIn("wind", weather)#Check if "wind" key exists response
-            self.assertIn("weather", weather)#Check if "weather" key exists response
+            self.assertIn("main", weather)#Check if main data key exists in response
+            self.assertIn("wind", weather)#Check if wind data exists response
+            self.assertIn("weather", weather)#Check if weather exists response
         else:
             self.assertIsNone(weather,"City not found")   #return none
     
@@ -38,6 +38,8 @@ class TestOutfitBuilder(unittest.TestCase):
     def test_Outfit(self):
         """Assert that ouput is correct based on weather data.
         """
+
+        self.assertEqual
 
 if __name__ == '__main__':
     unittest.main()
