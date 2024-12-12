@@ -1,5 +1,6 @@
 import unittest
 from main_outfit_builder import get_weather_data, Weather, Outfit
+
 class TestOutfitBuilder(unittest.TestCase):
     def setUp(self):
         self.test_data = {
