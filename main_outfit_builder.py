@@ -2,9 +2,8 @@ import argparse
 import sys
 import requests
 import json
-import config
 
-def get_weather_data(city):
+def get_weather_data(city, api_key):
     """Get data from weather API
     
     Args:
@@ -14,7 +13,7 @@ def get_weather_data(city):
         response (dict): the weather data retrieved from the API
     """
     base = "http://api.openweathermap.org/data/2.5/weather?"
-    api_url = base + "appid=" + config.key + "&q=" + city + "&units=imperial"
+    api_url = base + "appid=" + api_key + "&q=" + city + "&units=imperial"
 
     # Fetch response from the API
     fetch_response = requests.get(api_url)
@@ -167,6 +166,7 @@ def parse_args(args_list):
     """
     parser = argparse.ArgumentParser(description="Weather Parser")
     parser.add_argument("cityname", type=str, help="Path to the directory containing city name")
+    parser.add_argument("apikey", type=str, help="API key for weather API")
     args = parser.parse_args(args_list)
     return args
 
@@ -176,7 +176,7 @@ if __name__ == "__main__":
     """
     # Parse command-line arguments and fetch weather data for the input city
     args = parse_args(sys.argv[1:])    
-    weather = get_weather_data(args.cityname)
+    weather = get_weather_data(args.cityname, args.apikey)
     
     if weather:
         main_data = weather["main"]
