@@ -3,7 +3,7 @@ from main_outfit_builder import get_weather_data, Weather, Outfit
 from unittest.mock import patch
 
 class TestOutfitBuilder(unittest.TestCase):
-    """ Testing outfit builder program, which include API data retrival, weather object, and logic for outfit suggestions.
+    """ Testing outfit builder program, API retrieval, weather object, and logic for outfit suggestions.
     """ 
     def setUp(self):
         """ Set up test data and initialize sample data for testing.
