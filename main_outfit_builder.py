@@ -1,7 +1,6 @@
 import argparse
 import sys
 import requests
-import json
 
 def get_weather_data(city, api_key):
     """Get data from weather API
