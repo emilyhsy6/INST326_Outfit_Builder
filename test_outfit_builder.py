@@ -1,4 +1,5 @@
 import unittest
+import sys
 from main_outfit_builder import get_weather_data, Weather, Outfit
 
 class TestOutfitBuilder(unittest.TestCase):
@@ -7,6 +8,11 @@ class TestOutfitBuilder(unittest.TestCase):
     def setUp(self):
         """ Set up test data and initialize sample data for testing.
         """
+        if len(sys.argv) < 2:
+            raise ValueError("API key needed")
+        self.api_key = sys.argv.pop() #get last argument as API key
+        
+        #set up mock data for tests
         self.test_data = {
             "main": {
                 "temp": 45.0,
@@ -27,13 +33,13 @@ class TestOutfitBuilder(unittest.TestCase):
     def test_get_weather_data(self):
         """Test get_weather_data function and ensure that the correct keys are pulled from API
         """
-        weather = get_weather_data(self.city)
+        weather = get_weather_data(self.city, self.api_key)
         if weather:
             self.assertIn("main", weather) # Check if main data key exists in response
             self.assertIn("wind", weather) # Check if wind data key exists response
             self.assertIn("weather", weather) # Check if weather data key exists response
         else:
-            self.assertIsNone(weather,"City not found") #return none
+            self.assertIsNone(weather,"City not found") #return none if no city found
     
     def test_Weather(self):
         """Test the initialization of the Weather class and ensure it's returning the correct strings.
